@@ -18,4 +18,8 @@ export const routes: Routes = [
     path: 'admin-home',
     loadComponent: () => import('./admin-home/admin-home.page').then((m) => m.AdminHomePage),
   },
+  {
+    path: 'vaccine',
+    loadComponent: () => import('./vaccine/vaccine.page').then((m) => m.VaccinePage),
+  },
 ];
