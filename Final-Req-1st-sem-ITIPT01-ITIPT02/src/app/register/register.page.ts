@@ -49,5 +49,21 @@ export class RegisterPage implements OnInit {
       await toast.present();
       return;
     }
+
+    // Success notification
+    const toast = await this.toastController.create({
+      message: 'Account created successfully!',
+      duration: 2000,
+      color: 'success',
+      position: 'bottom'
+    });
+    await toast.present();
+
+    // Navigate pabalik sa Login
+    this.router.navigate(['/login']);
+  }
+
+  onCancel(): void {
+    this.router.navigate(['/login']);
   }
 }

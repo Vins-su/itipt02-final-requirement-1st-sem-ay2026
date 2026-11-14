@@ -1,18 +1,18 @@
 <ion-content class="ion-padding auth-background">
-  <div>
+  <div class="register-wrapper">
     
     <!-- App Logo / Branding -->
-    <div>
-      <div>
+    <div class="branding-container">
+      <div class="logo-badge">
         <ion-icon name="person-add-outline"></ion-icon>
       </div>
-      <h1>Create Account</h1>
-      <p>NutriBantay - BHS Registration</p>
+      <h1 class="app-title">Create Account</h1>
+      <p class="app-subtitle">NutriBantay - BHS Registration</p>
     </div>
 
     <!-- Register Form -->
-    <form class="register-form">
-      <div>
+    <form (ngSubmit)="onRegister()" class="register-form">
+      <div class="input-group">
         <ion-input [(ngModel)]="registrationData.fullName" name="fullName" class="custom-input" label="Full Name" label-placement="floating" fill="solid" required></ion-input>
 
         <ion-input [(ngModel)]="registrationData.username" name="username" class="custom-input" label="Email or Username" label-placement="floating" fill="solid" required></ion-input>
@@ -22,12 +22,12 @@
         <ion-input [(ngModel)]="registrationData.confirmPassword" name="confirmPassword" class="custom-input" type="password" label="Confirm Password" label-placement="floating" fill="solid" required></ion-input>
       </div>
 
-      <div>
+      <div class="button-group">
         <ion-button type="submit" expand="block" shape="round" color="success" class="register-btn">
           <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
           Sign Up
         </ion-button>
-        <ion-button type="button" expand="block" shape="round" fill="clear" color="medium" class="cancel-btn">
+        <ion-button type="button" expand="block" shape="round" fill="clear" color="medium" (click)="onCancel()" class="cancel-btn">
           Cancel
         </ion-button>
       </div>
