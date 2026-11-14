@@ -1,0 +1,40 @@
+<ion-content class="ion-padding auth-background">
+  <div class="login-wrapper">
+    
+    <!-- App Logo / Branding -->
+    <div>
+      <div>
+        <ion-icon name="heart-circle-outline"></ion-icon>
+      </div>
+      <h1>NutriBantay</h1>
+      <p>BHS Immunization & Feeding Program Tracker</p>
+    </div>
+
+    <!-- Login Form -->
+    <form (ngSubmit)="onLogin()" class="login-form">
+      <div>
+        <ion-input [(ngModel)]="credentials.username" name="username" id="username" class="custom-input" label="Username" label-placement="floating" fill="solid" required></ion-input>
+
+        <ion-input [(ngModel)]="credentials.password" name="password" id="password" class="custom-input" type="password" label="Password" label-placement="floating" fill="solid" required></ion-input>
+      </div>
+
+      <div>
+        <ion-button type="submit" expand="block" shape="round" color="success" class="login-btn">
+          <ion-icon name="log-in-outline" slot="start"></ion-icon>
+          Sign In
+        </ion-button>
+        <ion-button type="button" expand="block" shape="round" fill="clear" color="medium" class="cancel-btn" color="danger">
+          Cancel
+        </ion-button>
+      </div>
+    </form>
+
+    <!-- Register Link -->
+    <div>
+      <p>Don't have an account? 
+        <a class="register-link">Register here</a>
+      </p>
+    </div>
+
+  </div>
+</ion-content>
