@@ -1,0 +1,82 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="success">
+    <ion-title>NutriBantay Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button">
+        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding dashboard-background">
+  <div>
+    
+    <div class="fixed-top-section">
+
+      <!-- Summary Cards (Statistics) -->
+      <div>
+        <div>
+          <div class="stat-icon">
+            <ion-icon name="people-outline"></ion-icon>
+          </div>
+          <div>
+            <h3>{{ totalChildren }}</h3>
+            <p>Total Registered Children</p>
+          </div>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </div>
+
+        <div>
+          <div class="stat-icon">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+          </div>
+          <div>
+            <h3>{{ feedingProgramCount }}</h3>
+            <p>For Feeding Program</p>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow-icon"></ion-icon>
+        </div>
+
+        <div>
+          <div>
+            <ion-icon name="shield-checkmark-outline"></ion-icon>
+          </div>
+          <div>
+            <h3>{{ fullyImmunizedCount }}</h3>
+            <p>Fully Immunized</p>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow-icon"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons>
+      
+      <!-- 1. Vaccine Button -->
+      <ion-button>
+        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        Vaccine
+      </ion-button>
+
+      <!-- 2. Add New Child Button -->
+      <ion-button>
+        <ion-icon name="person-add-outline" slot="start"></ion-icon>
+        Add Child
+      </ion-button>
+
+      <!-- 3. Vaccination Schedule Button -->
+      <ion-button>
+        <ion-icon name="schedule-outline" slot="start"></ion-icon>
+        Schedule
+      </ion-button>
+      
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
