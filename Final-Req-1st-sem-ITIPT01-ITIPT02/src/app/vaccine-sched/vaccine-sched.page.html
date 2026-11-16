@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ headerTitle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-wrapper">
+    
+    <div class="section-header">
+      <h2>{{ isViewOnly ? 'Archived Immunization Record' : 'Schedule Patient Immunization' }}</h2>
+      <p>{{ isViewOnly ? 'Viewing past recorded schedule in read-only mode.' : 'Set vaccine appointments, time, and notify guardians.' }}</p>
+    </div>
+
+    <form>
+      
+      <ion-item">
+        <ion-input 
+          label="Search name..." 
+          labelPlacement="floating" 
+          [(ngModel)]="searchQuery" 
+          name="searchQuery" 
+          (ionInput)="filterChildren()"
+          [readonly]="isViewOnly"
+          placeholder="Type child's name from database..."
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-list>
+        <ion-item 
+          button  
+          (click)="selectChild(child)">
+          <ion-label>
+            <h2>{{ child.name }}</h2>
+            <p>{{ child.purok }} | Guardian: {{ child.guardian }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <!-- Vaccine Type Selection -->
+      <ion-item>
+        <ion-select 
+          label="Vaccine Type" 
+          labelPlacement="floating" 
+          name="vaccineName" 
+          [disabled]="isViewOnly"
+          required>
+          <ion-select-option value="BCG Vaccine">BCG (Tuberculosis)</ion-select-option>
+          <ion-select-option value="Hepatitis B (Dose 1)">Hepatitis B (Dose 1)</ion-select-option>
+          <ion-select-option value="Pentavalent Vaccine (Dose 1)">Pentavalent Vaccine (DPT-Hep B-Hib)</ion-select-option>
+          <ion-select-option value="Oral Polio Vaccine (OPV 1)">Oral Polio Vaccine (OPV)</ion-select-option>
+          <ion-select-option value="Measles, Mumps, Rubella (MMR Dose 1)">MMR (Measles, Mumps, Rubella)</ion-select-option>
+          <ion-select-option value="Oral Polio Vaccine (Booster)">Oral Polio Vaccine (Booster)</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Appointment Date -->
+      <ion-item>
+        <ion-input 
+          type="date" 
+          label="Appointment Date" 
+          labelPlacement="floating" 
+          name="schedDate" 
+          [readonly]="isViewOnly"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <!-- Appointment Time -->
+      <ion-item>
+        <ion-input 
+          type="time" 
+          label="Appointment Time" 
+          labelPlacement="floating"  
+          name="schedTime" 
+          [readonly]="isViewOnly"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <!-- Guardian Contact Number -->
+      <ion-item>
+        <ion-input 
+          type="tel" 
+          label="Guardian Contact Number" 
+          labelPlacement="floating" 
+          name="contact" 
+          [readonly]="isViewOnly"
+          placeholder="09XXXXXXXXX"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <!-- Health Remarks / Vital Notes -->
+      <ion-item>
+        <ion-input 
+          type="text" 
+          label="Health Remarks / Vital Notes" 
+          labelPlacement="floating" 
+          name="remarks" 
+          [readonly]="isViewOnly"
+          placeholder="e.g. Check weight & fever status">
+        </ion-input>
+      </ion-item>
+
+      <!-- Status -->
+      <ion-item>
+        <ion-select 
+          label="Status" 
+          labelPlacement="floating" 
+          name="status" 
+          [disabled]="isViewOnly"
+          required>
+          <ion-select-option value="Scheduled">Scheduled (Pending)</ion-select-option>
+          <ion-select-option value="Notified">Guardian Notified via SMS</ion-select-option>
+          <ion-select-option value="Completed">Completed / Administered</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-button>
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        {{ isEditMode ? 'UPDATE SCHEDULE' : 'SET SCHEDULE' }}
+      </ion-button>
+
+      <!-- Cancel / Back Button -->
+      <ion-button>
+        {{ isViewOnly ? 'BACK TO ARCHIVE' : 'CANCEL' }}
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>
