@@ -1,0 +1,93 @@
+// 1. Background ng buong page depende sa mode
+ion-content.add-child-content {
+  --background: #f8fafc;
+  --color: #0f172a;
+}
+
+body.dark ion-content.add-child-content {
+  --background: #0f172a !important;
+  --color: #f8fafc !important;
+}
+
+.form-wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+// 2. Rounded input items (Awtomatikong magpapalit kulay)
+.rounded-item {
+  --border-radius: 12px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  margin-bottom: 1rem !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  // Default para sa Light Mode (Puti)
+  --background: #ffffff !important;
+  --color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+
+  &::part(native) {
+    border-radius: 12px !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+}
+
+// Kapag naka-Dark Mode
+body.dark {
+  .rounded-item {
+    --background: #1e293b !important;
+    --color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+
+    &::part(native) {
+      background: #1e293b !important;
+      color: #f8fafc !important;
+    }
+  }
+
+  ion-input, ion-select {
+    --color: #f8fafc !important;
+    --placeholder-color: #94a3b8 !important;
+    color: #f8fafc !important;
+  }
+}
+
+// Default Text para sa Light Mode
+ion-input, ion-select {
+  --color: #0f172a !important;
+  --placeholder-color: #64748b !important;
+  color: #0f172a !important;
+}
+
+// 3. Save Button
+.save-btn {
+  --border-radius: 12px !important;
+  height: 48px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+ion-toast {
+  --border-radius: 35px !important;
+  --min-height: 25px !important;
+  --height: 25px !important;
+  --max-width: 90% !important;
+  margin-bottom: 12px !important;
+}
+
+ion-toast::part(container) {
+  border-radius: 35px !important;
+  min-height: 25px !important;
+  height: 25px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+ion-toast::part(message) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
