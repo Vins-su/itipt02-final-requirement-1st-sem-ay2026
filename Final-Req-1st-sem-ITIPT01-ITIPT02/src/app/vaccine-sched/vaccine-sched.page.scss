@@ -1,0 +1,21 @@
+/* Custom boundary at design para sa search results list */
+.search-results-list {
+  position: relative;
+  z-index: 10;
+  margin-top: -6px;
+  margin-bottom: 20px;
+  border: 2px solid #2dd36f; /* Kulay green na border para lumitaw ang boundary */
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Floating shadow effect */
+  overflow: hidden;
+
+  ion-item {
+    --background: #ffffff;
+    --border-color: #e0e0e0;
+    
+    &:hover {
+      --background: #f4f8f5;
+    }
+  }
+}

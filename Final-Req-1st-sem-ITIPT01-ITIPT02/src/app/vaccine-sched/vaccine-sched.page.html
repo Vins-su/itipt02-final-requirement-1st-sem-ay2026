@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar color="success">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button [defaultHref]="isViewOnly ? '/archive-schedule' : '/admin-home'"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ headerTitle }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding vaccine-content">
   <div class="form-wrapper">
     
     <div class="section-header">
@@ -15,9 +15,9 @@
       <p>{{ isViewOnly ? 'Viewing past recorded schedule in read-only mode.' : 'Set vaccine appointments, time, and notify guardians.' }}</p>
     </div>
 
-    <form>
+    <form (ngSubmit)="saveVaccineSchedule()">
       
-      <ion-item">
+      <ion-item class="rounded-item ion-margin-bottom" [disabled]="isViewOnly">
         <ion-input 
           label="Search name..." 
           labelPlacement="floating" 
@@ -30,9 +30,10 @@
         </ion-input>
       </ion-item>
 
-      <ion-list>
+      <ion-list *ngIf="!isViewOnly && filteredChildren.length > 0 && isSearching" class="search-results-list">
         <ion-item 
-          button  
+          button 
+          *ngFor="let child of filteredChildren" 
           (click)="selectChild(child)">
           <ion-label>
             <h2>{{ child.name }}</h2>
@@ -42,10 +43,11 @@
       </ion-list>
 
       <!-- Vaccine Type Selection -->
-      <ion-item>
+      <ion-item class="rounded-item ion-margin-bottom" [disabled]="isViewOnly">
         <ion-select 
           label="Vaccine Type" 
           labelPlacement="floating" 
+          [(ngModel)]="schedule.vaccineName" 
           name="vaccineName" 
           [disabled]="isViewOnly"
           required>
@@ -59,11 +61,12 @@
       </ion-item>
 
       <!-- Appointment Date -->
-      <ion-item>
+      <ion-item class="rounded-item ion-margin-bottom" [disabled]="isViewOnly">
         <ion-input 
           type="date" 
           label="Appointment Date" 
           labelPlacement="floating" 
+          [(ngModel)]="schedule.schedDate" 
           name="schedDate" 
           [readonly]="isViewOnly"
           required>
@@ -71,11 +74,12 @@
       </ion-item>
 
       <!-- Appointment Time -->
-      <ion-item>
+      <ion-item class="rounded-item ion-margin-bottom" [disabled]="isViewOnly">
         <ion-input 
           type="time" 
           label="Appointment Time" 
-          labelPlacement="floating"  
+          labelPlacement="floating" 
+          [(ngModel)]="schedule.schedTime" 
           name="schedTime" 
           [readonly]="isViewOnly"
           required>
@@ -83,11 +87,12 @@
       </ion-item>
 
       <!-- Guardian Contact Number -->
-      <ion-item>
+      <ion-item class="rounded-item ion-margin-bottom" [disabled]="isViewOnly">
         <ion-input 
           type="tel" 
           label="Guardian Contact Number" 
           labelPlacement="floating" 
+          [(ngModel)]="schedule.contact" 
           name="contact" 
           [readonly]="isViewOnly"
           placeholder="09XXXXXXXXX"
@@ -96,11 +101,12 @@
       </ion-item>
 
       <!-- Health Remarks / Vital Notes -->
-      <ion-item>
+      <ion-item class="rounded-item ion-margin-bottom" [disabled]="isViewOnly">
         <ion-input 
           type="text" 
           label="Health Remarks / Vital Notes" 
           labelPlacement="floating" 
+          [(ngModel)]="schedule.remarks" 
           name="remarks" 
           [readonly]="isViewOnly"
           placeholder="e.g. Check weight & fever status">
@@ -108,10 +114,11 @@
       </ion-item>
 
       <!-- Status -->
-      <ion-item>
+      <ion-item class="rounded-item ion-margin-bottom" [disabled]="isViewOnly">
         <ion-select 
           label="Status" 
           labelPlacement="floating" 
+          [(ngModel)]="schedule.status" 
           name="status" 
           [disabled]="isViewOnly"
           required>
@@ -121,13 +128,14 @@
         </ion-select>
       </ion-item>
 
-      <ion-button>
+      <!-- Action Button (Back to Archive / Cancel) -->
+      <ion-button *ngIf="!isViewOnly" expand="block" type="submit" color="success" class="ion-margin-top save-btn">
         <ion-icon name="calendar-outline" slot="start"></ion-icon>
         {{ isEditMode ? 'UPDATE SCHEDULE' : 'SET SCHEDULE' }}
       </ion-button>
 
       <!-- Cancel / Back Button -->
-      <ion-button>
+      <ion-button expand="block" fill="clear" color="medium" [routerLink]="isViewOnly ? '/archive-schedule' : '/admin-home'">
         {{ isViewOnly ? 'BACK TO ARCHIVE' : 'CANCEL' }}
       </ion-button>
 
