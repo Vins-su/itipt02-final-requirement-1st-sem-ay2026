@@ -1,0 +1,56 @@
+Archive:
+
+<ion-header [translucent]="true">
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Settings > Archived </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding archive-background">
+  <div class="archive-wrapper">
+    
+    <div class="page-header">
+      <h2>Archive Management</h2>
+      <p>Access and manage previously stored records and schedules.</p>
+    </div>
+
+    <!-- Archive Options List -->
+    <div class="archive-list">
+      
+      <!-- Button 1: Children's Record -->
+      <div class="archive-card" (click)="openChildrenRecordArchive()">
+        <div class="card-content">
+          <div class="icon-box">
+            <ion-icon name="folder-open-outline" color="success"></ion-icon>
+          </div>
+          <div class="card-info">
+            <h3>Children's Record</h3>
+            <p>View archived personal information and health profiles.</p>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow-icon"></ion-icon>
+        </div>
+      </div>
+
+      <!-- Button 2: Children Old Schedule -->
+      <div class="archive-card" (click)="openOldScheduleArchive()">
+        <div class="card-content">
+          <div class="icon-box">
+            <ion-icon name="calendar-clear-outline" color="warning"></ion-icon>
+          </div>
+          <div class="card-info">
+            <h3>Children's Old Schedule</h3>
+            <p>Review past vaccination and feeding program schedules.</p>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow-icon"></ion-icon>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>
