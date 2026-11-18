@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding settings-background">
+  <div class="settings-wrapper">
+
+    <!-- User Profile Card -->
+    <div class="profile-card">
+      <div class="avatar-container">
+        <ion-icon name="person-circle-outline" color="success"></ion-icon>
+      </div>
+      <div class="profile-info">
+        <h3>{{ healthWorkerName }}</h3>
+        <p class="role-text">Barangay Health Worker (Admin)</p>
+        <p class="station-text"><ion-icon name="location-outline"></ion-icon> Assigned: {{ assignedStation }}</p>
+      </div>
+    </div>
+
+    <!-- App Preferences Section -->
+    <div class="section-container">
+      <h4>Preferences</h4>
+      
+      <ion-item class="setting-item">
+        <ion-icon name="moon-outline" slot="start"></ion-icon>
+        <ion-label>Dark Mode</ion-label>
+        <ion-toggle slot="end" [(ngModel)]="darkMode" (ionChange)="toggleDarkMode($event)"></ion-toggle>
+      </ion-item>
+
+      <ion-item class="setting-item">
+        <ion-icon name="notifications-outline" slot="start"></ion-icon>
+        <ion-label>Push Notifications</ion-label>
+        <ion-toggle slot="end" [(ngModel)]="notifications"></ion-toggle>
+      </ion-item>
+
+      <!-- Bagong Archive Records Button/Item -->
+      <ion-item class="setting-item clickable-item" routerLink="/archive" detail="true">
+        <ion-icon name="archive-outline" slot="start" color="primary"></ion-icon>
+        <ion-label>Archived</ion-label>
+      </ion-item>
+    </div>
+
+    <!-- About & Help Section -->
+    <div class="section-container">
+      <h4>About NutriBantay</h4>
+      <div class="about-card">
+        <div class="about-icon">
+          <ion-icon name="shield-checkmark-outline" color="success"></ion-icon>
+        </div>
+        <div class="about-details">
+          <h5>NutriBantay System</h5>
+          <p>Barangay Health Station Immunization & Feeding Program Tracker. Designed to efficiently monitor children's nutritional statuses, track vaccination schedules, and manage health records.</p>
+          <span class="version-tag">Version 1.0.0 (Admin View)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logout Section with Confirmation -->
+    <div class="logout-section">
+      <ion-button expand="block" color="danger" class="logout-btn" (click)="confirmLogout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        Log Out
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>
