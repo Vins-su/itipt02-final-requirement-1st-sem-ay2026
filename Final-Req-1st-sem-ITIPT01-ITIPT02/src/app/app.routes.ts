@@ -38,4 +38,8 @@ export const routes: Routes = [
     path: 'archive-schedule',
     loadComponent: () => import('./archive-schedule/archive-schedule.page').then((m) => m.ArchiveSchedulePage),
   },
+  {
+    path: 'fully-immunized',
+    loadComponent: () => import('./fully-immunized/fully-immunized.page').then((m) => m.FullyImmunizedPage),
+  },
 ];
